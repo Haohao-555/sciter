@@ -1,0 +1,24 @@
+@set new {
+  :root {
+      flow:horizontal;
+      height:3.6em;
+  }
+
+  :root > plaintext {
+      size:*;
+  }
+
+  :root > plaintext:empty::marker {
+      content:attr(novalue);
+      size:*;
+      color:#888;
+      z-index:-1;
+      text-align:center;
+      vertical-align:middle;
+  }
+
+  :root > button {
+      display:block;
+      padding:* 1em;
+  }
+}

@@ -1,0 +1,32 @@
+@set list {
+  :root {
+      margin-top: 20px;
+      size:*;
+      overflow-y:auto;
+      border-spacing:1em;
+  } 
+  :root .note {
+      margin: auto;
+      padding: 6px;
+      box-sizing: border-box;
+      margin-bottom: 12px;
+      background: hsla(0,0%,100%,.5);
+      border-radius: 12px 8px 8px 12px;
+      border: hsla(0,0%,100%,.5);
+      box-shadow:  0px 0px 12px rgba(0,0,0,0.12);
+  }
+
+  :root .note:hover {
+      cursor: pointer;
+      box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.2)
+  }
+
+  :root .note .date {
+      line-height: 24px;
+      font-size: 12px;
+  }
+  :root .note .text {
+      font-size: 16px;
+      padding: 12px 0px;
+  }
+}
