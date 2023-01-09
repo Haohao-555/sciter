@@ -1,0 +1,90 @@
+<!--
+ * @Date: 2023-01-09 19:42:14
+ * @Author: 浩
+ * @LastEditors: 浩
+ * @FilePath: \react-seeImg\main.htm
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>图片查看器</title>
+</head>
+<style>
+    .container {
+        width: 400px;
+        height: 400px;
+        margin-left: 12px;
+        overflow: hidden;
+    }
+
+    .container.max {
+        size: 1*;
+    } 
+
+    .btn {
+        height: 28px;
+        font-size: 12px;
+        padding: 0 12px;
+        background: none;
+        border: none;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 3px;
+        background-color: #2283FF;
+        color: #FFFFFF;
+        border-color: #2283FF;
+        margin: 12px;
+    }
+
+    .btn:hover {
+        background-color: rgba(67, 150, 255, 1);
+        border-color: rgba(67, 150, 255, 1);
+        cursor: pointer;
+    }
+
+</style>
+<button class="btn">选择图片</button>
+<span class="path">请选择图片地址</span>
+<div class="container"></div>
+<script type="module">
+    import { ScLookImg } from './component/index';
+    const lookImg = new ScLookImg({ container: '.container' });
+
+
+    /*
+     *  lookImg.id：       组件 id 该 id 绑定在 组件最外层 可以通过 document.$(`#${id}`) 获取该组件的 dom 元素
+     *  lookImg.state：    组件状态 true 渲染成功 
+     *  lookImg.message：  错误信息
+     *  lookImg.look：     需传入 图片地址（必须是绝对路径，相对路径不生效） 
+     */
+
+    document.$('.btn').addEventListener('click', () => {
+
+        // 选择图片限制类型为 jpg 或 png
+        const filter = 'img files only(*.jpg, *.png)|*.jpg;*.png';
+        let path = Window.this.selectFile({ filter, mode: "open" });
+        
+        if (path && lookImg.state) {
+            // 解码需要使用 decodeURIComponent （用 decodeURI h会有些路径解码不出来）
+            path = decodeURIComponent(path).split("file://")[1];
+            document.$('.path').innerText = path;
+
+            // 加载图片
+            lookImg.look({ imgsrc: path });
+        }
+
+    });
+
+    // 监听窗口大小变化
+    Window.this.on('size', () => {
+        const state = Window.this.state;
+        if (state == Window.WINDOW_MAXIMIZED) {
+            document.$('.container').classList.add('max');
+        } else {
+            document.$('.container').classList.remove('max');
+        }
+    });
+</script>
+
+</html>
