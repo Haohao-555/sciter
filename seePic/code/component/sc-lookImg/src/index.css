@@ -1,0 +1,92 @@
+@set v-horizontal-indicator {
+    .slider {
+        background: rgba(200, 201, 204);
+    }
+}
+
+@set v-vertical-indicator {
+    .slider {
+        background: rgba(200, 201, 204);
+    }
+}
+
+@set look-img {
+
+    :root {
+        /* 撑开容器 */
+        size: *;
+    }
+
+    :root .img-container {
+        height: 3*;
+        border: 1px solid #333;
+        /* 去除行内块元素间隙 */
+        font-size: 0px;
+        /* 使 X轴和Y轴滚动条 不占据图片容器大小 */
+        overflow: scroll-indicator;
+        vertical-scrollbar: "v-vertical-indicator";
+        horizontal-scrollbar: "v-horizontal-indicator";
+    }
+
+    :root .img-container img {
+        display: block;
+        margin-top: *;
+        margin-bottom: *;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    :root .img-option {
+        /* 弹性盒子 */
+        flow: horizontal;
+        box-sizing: border-box;
+        height: 20px;
+        padding: 0 2px;
+        border: 1px solid #333;
+        border-top: none;
+    }
+
+    :root .img-option .item {
+        width: 1*;
+        min-width: max-content;
+        height: 20px;
+        padding: 0 6px;
+        border-right: 1px solid #333;
+        text-align: center;
+        line-height: 20px;
+    }
+
+    :root .img-option .item:last-child {
+        flow: horizontal;
+        padding-left: 6px;
+        border-right: none;
+    }
+
+    :root .img-option .item:last-child span {
+        width: 16px;
+        height: 16px;
+        margin-top: *;
+        margin-bottom: *;
+        margin-right: 2px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        transform: scale(.8);
+        cursor: pointer;
+    }
+  
+    :root .img-option .item:last-child span.enlarge {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAT9JREFUOE+lk69LBUEQx7+TRGz+B2K8uYeCwR/FZDdoECwqGASLL2jSpAZBMWuyabCbnsEmKOx3k2gSbDbjMbKPu8fe3RPv6cKW3ZnPzHd+CP55pOqfJMmciKwDmAQwAeAZwJOZXXrvH6r2JUCapktmdgXgGECHZEdV5wGEuysiq865mxjSA6jqNoBRkgc/qVLV8PdJ8ryw6QJUdQHALcmR2DlkVI2oql8AFkneBdsCcAHgleRRDFBVI1mSqap7AMZJbsSARwDtoLkBINTjhORUDOhFygt5Xau2yHIhJ86skDBoBockZ/9agzaAMZJbMWCQLrwDWCt1IW9lozkwsyHvfehE9/w6ia1WazrLshkR2QHwIiIfzrmVvoDw2GcX3kSEZnaaj/aZmQ177zdrGTRdTFXdB3AfgLVtbAop7L4BLHGyESJ9ehoAAAAASUVORK5CYII=);
+    }
+
+    :root .img-option .item:last-child span.shrink {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAPpJREFUOE+l068vxVEYx/HXN92Z5j8w/wCbcFEkmk1QbAo2waYQrkRCsDGZJAqCYpIbNBtBM5JN02R27r7Hzr77cs91n+0pz/M57z2/TqFPK2reT2EFYxjFIx5whruqvgpYwDkOcFv6NIK3sISLFJICNjCE3T+6CrkPnERNBMzgEoMZI/nEPG6CNgJO8YL9DMA2RrCaAu6xVfbcjRHmcYjxFPCVVDOL6xrKHK7K+I8+ttBrBXuY/O8MQqvDWE8BvWzhDcvVLQRY7h00EDbRsZxLbGICm3jGOxZ/A4R49S+84glH5ZqPMYC1ugq63UDM76AdgHW/MRfS0X0D+iUxEYAe7L0AAAAASUVORK5CYII=);
+    }
+
+    :root .img-option .item:last-child span.origin {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAARxJREFUOE+1k71Ow0AQhGdjkQdCoeYnHU1qpFQ0IAH22Q2llSfwnhEF0CJRUNHQ8VeDeCDQedAhX+RYDgpGXHfane9ud2cFfzwS9MaYrSZLVZ+b92Xxb4APknwUkXcAHwA+VXWzBXgBsAZgSHJdRHb8I3MAgBzASESmRVHcdVWWpumE5DWANwCzLsCZiJw756ZlWT40IXEcj6Mo8uJDkqYToKrbPnEwGFyQ3LPWvnpIkiQbInJTVdWBBxtjnhYA7e/Wgl1VndU9ykneB2Azfz6FvtP8H8CvS6hNkvsmZlk2ds5dATi11t6u1MQAEBEleUnyOIhDb8IYSR4BOFnmgxHJ/bY4QH400gpW9rvhbTwEsGjlsA+9l6mvB7zuC8GfxBF9NOoGAAAAAElFTkSuQmCC);
+    }
+
+    :root .img-option .item:last-child span.adaptation {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAQCAYAAAAbBi9cAAAAAXNSR0IArs4c6QAAAMdJREFUOE/l0zFqQkEQxvGfjUfwElaCZTDxBt7DI1hEBZtUqdMogo13ELSwtksjBLxBqhQiGkbeglg8eT47B6aZ2e+/OzM7Ffzh58K/8C3f3rN0HU1MK9ijekOYl+7jEKBffCLdUoS5xCqBtpjhFYMClLdMM0+gMXZZsF0AFCXF5aPQRGlhKXgP6Kx5AlBMq4XSPXoIqIZuiReF9jy1DholQBMcA/SRLe69K7JIL1qjV+BHXx99SaDTVSYmF8uYZ6HZIPobPvwHLRswLd/3bpQAAAAASUVORK5CYII=);
+    }
+}

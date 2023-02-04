@@ -1,0 +1,109 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>图片查看器</title>
+</head>
+
+<style>
+    .container {
+        width: 360px;
+        height: 360px;
+        margin-left: 12px;
+    }
+
+    .container.max {
+        size: 1*;
+    }
+
+    .btn {
+        height: 28px;
+        font-size: 12px;
+        padding: 0 12px;
+        background: none;
+        border: none;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 3px;
+        background-color: #2283FF;
+        color: #FFFFFF;
+        border-color: #2283FF;
+        margin: 8px 12px;
+    }
+
+    .file {
+        flow: horizontal;
+        height: 46px;
+    }
+
+    .btn:hover {
+        background-color: rgba(67, 150, 255, 1);
+        border-color: rgba(67, 150, 255, 1);
+        cursor: pointer;
+    }
+
+    .path {
+        width: *;
+        height: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+    }
+</style>
+
+<!-- 选择图片 -->
+<div class="file">
+    <button class="btn">选择图片</button>
+    <span class="path">请选择图片地址</span>
+</div>
+
+<!-- 图片查看器 -->
+<div class="container"></div>
+
+<script type="module">
+    import { ScLookImg } from './component/index';
+
+    const changeContainerSize = () => {
+        const container = document.$('.container');
+        const state = Window.this.state == Window.WINDOW_MAXIMIZED;
+        state ? container.classList.add('max') : container.classList.remove('max');
+    }
+    changeContainerSize();
+
+
+    const img = new ScLookImg({ container: '.container' });
+
+    /*
+     *  img.id：             组件 id 该 id 绑定在 组件最外层 可以通过 document.$(`#${id}`) 获取该组件的 dom 元素
+     *  img.state：          组件状态（true 渲染成功） 
+     *  img.message：        错误信息
+     *  img.lookImg：        需传入 图片地址（必须是绝对路径，项目相对路径不生效） 
+     *  img.getImgState：    获取当前图片状态 
+     *  img.changeImgState： 改变图片当前状态
+     */
+
+    document.$('.btn').addEventListener('click', () => {
+        // 选择图片限制类型为 jpg 或 png
+        let path = Window.this.selectFile({ filter: `img files only(*.jpg, *.png)|*.jpg;*.png`, mode: "open" });
+
+        if (path && img.state) {
+            // 解码需要使用 decodeURIComponent （用 decodeURI 会有些路径解码不出来）
+            path = decodeURIComponent(path).split("file://")[1];
+            document.$('.path').innerText = path;
+
+            // 加载图片
+            img.lookImg({ imgsrc: path });
+        }
+    });
+
+    // 监听窗口大小变化
+    Window.this.on('size', () => {
+        // 改变容器大小
+        changeContainerSize();
+        // 保持图片缩放比例不变
+        img.changeImgState(img.getImgState());
+    });
+</script>
+
+</html>
